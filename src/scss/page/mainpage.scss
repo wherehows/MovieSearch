@@ -1,0 +1,124 @@
+@import "../variables";
+
+.header-template {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  border-bottom: 0.1rem solid #ececec;
+  background-color: rgba(255, 255, 255, 0.96);
+
+  &__searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+  }
+
+  &__input {
+    width: 30rem;
+    height: 100%;
+    border: 0.1rem solid #a3a3a3;
+    padding: 0.6rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.4rem;
+    height: 100%;
+    padding: 0;
+    border: 0.1rem solid #a3a3a3;
+    cursor: pointer;
+
+    i {
+      color: #797979;
+    }
+  }
+}
+
+.symbol {
+  position: absolute;
+  left: 2rem;
+}
+
+.main-template {
+  &__no-search {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &__movie-card-wrapper {
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    margin: 0 15px 0 15px;
+    position: relative;
+    top: 70px;
+  }
+
+  &__scroll-observer {
+    width: 10rem;
+    height: 10rem;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.movie-card {
+  width: 20rem;
+  margin: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2.5px 10px 2px rgba(black, 0.8);
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
+
+  &__poster-wrapper {
+    width: 100%;
+  }
+
+  &__poster {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__movie-info {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+  }
+
+  &__overview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 1.2em;
+    height: 3.6em;
+  }
+}

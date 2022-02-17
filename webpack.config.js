@@ -1,14 +1,25 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path");
 const webpack = require("webpack");
 require("dotenv").config();
 
 module.exports = {
-  entry: "./src/js/app.js",
+  entry: "./src/index.js",
   output: {
     filename: "app.bundle.js",
-    path: __dirname + "/dist",
+    path: path.resolve(__dirname, "dist"),
+  },
+  resolve: {
+    alias: {
+      "@src": path.resolve(__dirname, "src"),
+      "@atoms": path.resolve(__dirname, "src/components/atoms/"),
+      "@molecules": path.resolve(__dirname, "src/components/molecules/"),
+      "@templates": path.resolve(__dirname, "src/components/templates/"),
+      "@pages": path.resolve(__dirname, "src/components/pages/"),
+      "@utils": path.resolve(__dirname, "src/utils/"),
+    },
   },
   module: {
     rules: [
@@ -46,13 +57,14 @@ module.exports = {
       filename: "common.css",
     }),
     new webpack.DefinePlugin({
-      MY_API_KEY: JSON.stringify(process.env.MY_API_KEY),
+      API_KEY: JSON.stringify(process.env.API_KEY),
     }),
     new CleanWebpackPlugin(),
   ],
   devServer: {
+    historyApiFallback: true,
     static: {
-      directory: __dirname + "/dist",
+      directory: path.resolve(__dirname, "dist"),
     },
     port: 3000,
   },
